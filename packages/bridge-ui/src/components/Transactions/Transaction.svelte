@@ -1,31 +1,31 @@
 <script lang="ts">
-  import type { BridgeTransaction } from '../domain/transactions';
-  import type { Chain } from '../domain/chain';
+  import type { BridgeTransaction } from '../../domain/transactions';
+  import type { Chain } from '../../domain/chain';
   import { ArrowTopRightOnSquare } from 'svelte-heros-v2';
-  import { MessageStatus } from '../domain/message';
+  import { MessageStatus } from '../../domain/message';
   import { Contract, ethers } from 'ethers';
-  import { signer } from '../store/signer';
-  import { pendingTransactions } from '../store/transactions';
+  import { signer } from '../../store/signer';
+  import { pendingTransactions } from '../../store/transactions';
   import { _ } from 'svelte-i18n';
   import {
     fromChain as fromChainStore,
     toChain as toChainStore,
-  } from '../store/chain';
-  import { BridgeType } from '../domain/bridge';
+  } from '../../store/chain';
+  import { BridgeType } from '../../domain/bridge';
   import { onDestroy, onMount } from 'svelte';
 
   import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
-  import { errorToast, successToast } from './Toast.svelte';
-  import HeaderSyncABI from '../constants/abi/HeaderSync';
+  import { errorToast, successToast } from '../Toast.svelte';
+  import HeaderSyncABI from '../../constants/abi/HeaderSync';
   import { fetchSigner, switchNetwork } from '@wagmi/core';
-  import BridgeABI from '../constants/abi/Bridge';
-  import ButtonWithTooltip from './ButtonWithTooltip.svelte';
-  import TokenVaultABI from '../constants/abi/TokenVault';
-  import { chains, mainnetChain, taikoChain } from '../chain/chains';
-  import { providers } from '../provider/providers';
-  import { bridges } from '../bridge/bridges';
-  import { tokenVaults } from '../vault/tokenVaults';
-  import { isOnCorrectChain } from '../utils/isOnCorrectChain';
+  import BridgeABI from '../../constants/abi/Bridge';
+  import ButtonWithTooltip from '../ButtonWithTooltip.svelte';
+  import TokenVaultABI from '../../constants/abi/TokenVault';
+  import { chains, mainnetChain, taikoChain } from '../../chain/chains';
+  import { providers } from '../../provider/providers';
+  import { bridges } from '../../bridge/bridges';
+  import { tokenVaults } from '../../vault/tokenVaults';
+  import { isOnCorrectChain } from '../../utils/isOnCorrectChain';
 
   export let transaction: BridgeTransaction;
   export let fromChain: Chain;

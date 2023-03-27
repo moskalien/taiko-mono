@@ -1,10 +1,10 @@
 <script lang="ts">
   import { ethers } from 'ethers';
   import { ArrowTopRightOnSquare } from 'svelte-heros-v2';
-  import Modal from './modals/Modal.svelte';
-  import type { BridgeTransaction } from '../domain/transactions';
-  import { addressSubsection } from '../utils/addressSubsection';
-  import { chains } from '../chain/chains';
+  import Modal from '../modals/Modal.svelte';
+  import type { BridgeTransaction } from '../../domain/transactions';
+  import { addressSubsection } from '../../utils/addressSubsection';
+  import { chains } from '../../chain/chains';
 
   export let transaction: BridgeTransaction;
   export let onClose: () => void;

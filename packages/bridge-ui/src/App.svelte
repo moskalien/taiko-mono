@@ -1,6 +1,5 @@
 <script lang="ts">
   import { wrap } from 'svelte-spa-router/wrap';
-  import QueryProvider from './components/providers/QueryProvider.svelte';
   import Router from 'svelte-spa-router';
   import { configureChains, createClient } from '@wagmi/core';
   import { publicProvider } from '@wagmi/core/providers/public';
@@ -93,13 +92,13 @@
     if (store) {
       const userAddress = await store.getAddress();
 
-      const apiTxs = await $relayerApi.GetAllBridgeTransactionByAddress(
+      const apiTxs = await $relayerApi.getAllBridgeTransactionByAddress(
         userAddress,
       );
-      const blockInfoMap = await $relayerApi.GetBlockInfo();
+      const blockInfoMap = await $relayerApi.getBlockInfo();
       relayerBlockInfoMap.set(blockInfoMap);
 
-      const txs = await $transactioner.GetAllByAddress(userAddress);
+      const txs = await $transactioner.getAllByAddress(userAddress);
       const hashToApiTxsMap = new Map(
         apiTxs.map((tx) => {
           return [tx.hash.toLowerCase(), 1];
@@ -118,11 +117,11 @@
       //   return true;
       // });
 
-      $transactioner.UpdateStorageByAddress(userAddress, updatedStorageTxs);
+      $transactioner.updateStorageByAddress(userAddress, updatedStorageTxs);
 
       transactions.set([...updatedStorageTxs, ...apiTxs]);
 
-      const tokens = $tokenService.GetTokens(userAddress);
+      const tokens = $tokenService.getTokens(userAddress);
       userTokens.set(tokens);
     }
   });
@@ -199,14 +198,14 @@
   };
 </script>
 
-<QueryProvider>
+<div class="container">
   <main>
     <Navbar />
     <Router {routes} />
   </main>
   <Toast />
   <SwitchEthereumChainModal />
-</QueryProvider>
+</div>
 
 <style>
   main {

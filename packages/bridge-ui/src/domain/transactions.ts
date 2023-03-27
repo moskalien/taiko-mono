@@ -15,15 +15,15 @@ export type BridgeTransaction = {
   toChainId: number;
 };
 export interface Transactioner {
-  GetAllByAddress(
+  getAllByAddress(
     address: string,
     chainID?: number,
   ): Promise<BridgeTransaction[]>;
 
-  GetTransactionByHash(
+  getTransactionByHash(
     address: string,
     hash: string,
   ): Promise<BridgeTransaction>;
 
-  UpdateStorageByAddress(address: string, txs: BridgeTransaction[]): void;
+  updateStorageByAddress(address: string, txs: BridgeTransaction[]): void;
 }
