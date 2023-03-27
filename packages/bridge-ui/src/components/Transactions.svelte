@@ -47,11 +47,9 @@
     No transactions
   {/if}
 
-  {#if selectedTransaction}
-    <TransactionDetail
-      transaction={selectedTransaction}
-      onClose={() => (selectedTransaction = null)} />
-  {/if}
+  <TransactionDetail
+    transaction={selectedTransaction}
+    onClose={() => (selectedTransaction = null)} />
 
   <MessageStatusTooltip bind:show={showMessageStatusTooltip} />
   <InsufficientBalanceTooltip bind:show={showInsufficientBalance} />
