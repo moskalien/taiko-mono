@@ -2,9 +2,11 @@ import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "@openzeppelin/hardhat-upgrades";
 import "@typechain/hardhat";
+import * as fs from "fs";
 import "hardhat-abi-exporter";
 import "hardhat-contract-sizer";
 import "hardhat-gas-reporter";
+import "hardhat-preprocessor";
 import { HardhatUserConfig } from "hardhat/config";
 import "solidity-coverage";
 import "solidity-docgen";
@@ -13,6 +15,15 @@ import "./tasks/deploy_L1";
 
 const hardhatMnemonic =
     "test test test test test test test test test test test taik";
+
+function getRemappings() {
+    return fs
+        .readFileSync("remappings.txt", "utf8")
+        .split("\n")
+        .filter(Boolean) // remove empty lines
+        .map((line) => line.trim().split("="));
+}
+
 const config: HardhatUserConfig = {
     docgen: {
         exclude: [
@@ -33,6 +44,25 @@ const config: HardhatUserConfig = {
         gasPriceApi:
             "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
         token: "ETH",
+    },
+    preprocess: {
+        eachLine: (hre) => ({
+            transform: (line: string) => {
+                if (line.match(/^\s*import /i)) {
+                    for (const [from, to] of getRemappings()) {
+                        if (line.includes(from)) {
+                            line = line.replace(from, to);
+                            break;
+                        }
+                    }
+                }
+                return line;
+            },
+        }),
+    },
+    paths: {
+        sources: "./src",
+        cache: "./cache_hardhat",
     },
     mocha: {
         timeout: 300000,

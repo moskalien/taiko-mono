@@ -1,0 +1,44 @@
+{
+  "version": "3.4",
+  "log": [
+    {
+      "src/Counter.sol:Counter": {
+        "src": "src/Counter.sol:4",
+        "version": {
+          "withMetadata": "a132707c835635298baa3f726ae5875c167407e874daff9400ce37a3a367dee0",
+          "withoutMetadata": "3dc9c4be6d6bffc5ab3105e7234c07c9203c027e2fd60b79dbce8daf2e4bcf6a",
+          "linkedWithoutMetadata": "3dc9c4be6d6bffc5ab3105e7234c07c9203c027e2fd60b79dbce8daf2e4bcf6a"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "setNumber(uint256)",
+          "increment()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "number",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint256",
+              "contract": "Counter",
+              "src": "src/Counter.sol:5"
+            }
+          ],
+          "types": {
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.18"
+      }
+    }
+  ]
+}
