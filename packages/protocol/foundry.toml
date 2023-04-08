@@ -9,3 +9,7 @@ gas_reports = ["TaikoL1", "TaikoWithConfig", "TaikoL2",  "GasComparision", "Sign
 allow_paths = ["../../node_modules"]
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
+remappings = [
+  '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
+  '@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/',
+]

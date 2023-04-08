@@ -13,8 +13,8 @@ library LibSharedConfig {
     function getConfig() internal pure returns (TaikoData.Config memory) {
         return
             TaikoData.Config({
-                chainId: 167,
-                maxNumBlocks: 2049, // owner:daniel
+                chainId: 167002,
+                maxNumBlocks: 2048000000, // owner:daniel
                 blockHashHistory: 40, // owner:daniel
                 maxVerificationsPerTx: 10, //owner:david. Each time one more block is verified, there will be ~20k more gas cost.
                 commitConfirmations: 0, // owner:daniel
@@ -35,8 +35,8 @@ library LibSharedConfig {
                 feeMaxPeriodPctg: 400, // owner:daniel - 400%
                 blockTimeCap: 60 seconds, // owner:daniel
                 proofTimeCap: 30 minutes, // owner:daniel
-                bootstrapDiscountHalvingPeriod: 1 seconds, // owner:daniel
-                enableTokenomics: true,
+                bootstrapDiscountHalvingPeriod: 60 days, // owner:daniel
+                enableTokenomics: false,
                 enablePublicInputsCheck: true,
                 enableAnchorValidation: true
             });
